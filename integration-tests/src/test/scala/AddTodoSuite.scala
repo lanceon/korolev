@@ -34,12 +34,11 @@ class AddTodoSuite(caps: Caps) extends FunSuite with Matchers with BeforeAndAfte
     pageTitle should be ("The Test App")
     textField(id("todo-input")).value = newTodoText
     click on id("todo-submit-button")
-    eventually(timeout(3.seconds)) {
-      val newTodoExists = name("todo-list-item")
-        .findAllElements
-        .exists(_.text == newTodoText)
-      newTodoExists should be (true)
-    }
+    Thread.sleep(1000)
+    val newTodoExists = name("todo-list-item")
+      .findAllElements
+      .exists(_.text == newTodoText)
+    newTodoExists should be (true)
   }
 
   after {
